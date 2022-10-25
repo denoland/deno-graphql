@@ -24,9 +24,9 @@ const server = new Server({
 
     return pathname === "/graphql"
       ? await GraphQLHTTP<Request>({
-          schema,
-          graphiql: true,
-        })(req)
+        schema,
+        graphiql: true,
+      })(req)
       : new Response("Not Found", { status: 404 });
   },
   port: 3000,

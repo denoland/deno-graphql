@@ -21,7 +21,7 @@ import type { GQLRequest } from "https://deno.land/x/gql@1.1.1/types.ts";
  */
 export function GraphQLHTTP<
   Req extends GQLRequest = GQLRequest,
-  Ctx extends { request: Req } = { request: Req }
+  Ctx extends { request: Req } = { request: Req },
 >({ playgroundOptions = {}, headers = {}, ...options }: GQLOptions<Ctx, Req>) {
   return async (request: Req) => {
     if (options.graphiql && request.method === "GET") {
@@ -60,7 +60,7 @@ export function GraphQLHTTP<
           const result = await runHttpQuery<Req, Ctx>(
             await request.json(),
             options,
-            { request }
+            { request },
           );
 
           return new Response(JSON.stringify(result, null, 2), {
